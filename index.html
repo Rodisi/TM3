@@ -130,11 +130,20 @@ function initialize() {
     handleNoGeolocation(false);
   }
   google.maps.event.addListener(map, 'click', function(event) {
-		var clickPos = new google.maps.LatLng(event.latLng.lat(),event.latLng.lng());
-        alert('Lat: ' + clickPos.lat() + ' Lng: ' + clickPos.lng());
-		map.setCenter(clickPos);
-		map.setZoom(20);
-	});
+	  placeMarker(event.latLng);
+  });
+
+function placeMarker(location) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map,
+  });
+  var infowindow = new google.maps.InfoWindow({
+    content: 'Latitude: ' + location.lat() +
+    '<br>Longitude: ' + location.lng()
+  });
+  infowindow.open(map,marker);
+}
 }
 var locais = [
   ['Bondi Beach', -33.890542, 151.274856, 4],
