@@ -205,9 +205,14 @@ function setMarkers(map, locations) {
     });
 	google.maps.event.addListener(marker, 'click', function() {
         this.infowindow.open(map, this);
-
-});
+		map.setZoom(16);
+		map.setCenter(marker.getPosition());
+	});
   }
+  google.maps.event.addListener(map, 'click', function() {
+        alert('reste')
+		map.setZoom(20);
+	});
 }
 
 function handleNoGeolocation(errorFlag) {
