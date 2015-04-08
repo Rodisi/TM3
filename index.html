@@ -43,8 +43,14 @@
 		font-size: 32px;
 		position: absolute;
 		left: 100px;
-		top: 10px;
+		top: 20px;
 		font-family: 'Rancho', serif;
+	  }
+	  
+	  .social_icons{
+	  position: absolute;
+		right: 100px;
+		top: 20px;
 	  }
 	  
       .controls {
@@ -167,6 +173,9 @@ function initialize() {
     // Browser doesn't support Geolocation
     handleNoGeolocation(false);
   }
+  
+  
+  
   google.maps.event.addListener(map, 'click', function(event) {
 	  var marker;
 	  placeMarker(event.latLng);
@@ -264,7 +273,15 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <body>
   <div class="container">
 	<div id="header">
-		<h1 id=titulo> teste</h1>
+		<div id=titulo> teste</div>
+		<div class="social_icons">
+								<img src="images/social-icons.png" border="0" usemap="#social-icons">
+								<map name="social-icons">
+								  <area shape="rect" coords="0,0,32,32" href="http://www.facebook.com" target="_blank" alt="Facebook">
+								  <area shape="rect" coords="48,0,80,32" href="http://www.twitter.com" target="_blank" alt="Twitter">
+								  <area shape="rect" coords="96,0,128,32" href="https://plus.google.com" target="_blank" alt="Google+">
+								</map>
+							</div>
 		</div>
 			<input id="pac-input" class="controls" type="text" placeholder="Search Box">
 			<div id="map-canvas"></div>
