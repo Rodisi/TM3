@@ -152,7 +152,7 @@ function initialize() {
 	  position: location,
 	  $.fancybox({
         type: 'iframe',
-        href: 'teste.html'
+        href: 'teste.html?lat=location.lng()&lon=location.lon()'
     });
   });
 

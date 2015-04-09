@@ -3,14 +3,21 @@
   <head>
   </head>
   <body>
+  <script>
+  lat=$_GET["lat"];
+  lon=$_GET["lon"];
+  documment.write(lat);
+  </script>
+  
+  
 <form action="guardarmarcador.php">
 <input type="file" name="imagem" >
 <br>
 <input type="text" name="historia" placeholder="historia">
 <br>
-<input type="hidden" name="lat" value="">
+<input type="text" name="lat" value=$lat>
 <br>
-<input type="hidden" name="lon" value="">
+<input type="text" name="lon" value=$lon>
 <br><br>
 <input type="submit" value="Submit">
 </form>
