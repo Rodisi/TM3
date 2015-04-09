@@ -9,6 +9,16 @@
     <title>Places search box</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+	<!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="/TM3/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+	<!-- Add fancyBox -->
+	<link rel="stylesheet" href="/TM3/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+	<script type="text/javascript" src="/TM3/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+	<!-- Optionally add helpers - button, thumbnail and/or media -->
+	<link rel="stylesheet" href="/TM3/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+	<script type="text/javascript" src="/TM3/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+	<script type="text/javascript" src="/TM3/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
     <script>
 	
 	//Toggles de divs
@@ -17,6 +27,7 @@
 
 	var toggleSide=0;
 	var toggleBottom=0;
+	$(".fancybox").fancybox();
 	 
 	$(".arrow-left").click(function(){ 
 	
