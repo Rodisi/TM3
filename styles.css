@@ -46,6 +46,7 @@ html, body {
 		top: 2%;
 	  }
 	  .sidebar {
+		background:white;
 		width: 2%;
 		height: 60%;
 		position: fixed;
@@ -57,6 +58,7 @@ html, body {
 		}
 		
 		.bottombar {
+		background:white;
 		width: 50%;
 		height: 2%;
 		position: fixed;
