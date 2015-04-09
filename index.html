@@ -149,6 +149,10 @@ function initialize() {
   google.maps.event.addListener(map, 'click', function(event) {
 	  var marker;
 	  placeMarker(event.latLng);
+	  $.fancybox({
+        type: 'iframe',
+        href: 'teste.html'
+    });
   });
 
 function placeMarker(location) {
