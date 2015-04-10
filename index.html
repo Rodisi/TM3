@@ -195,9 +195,11 @@ function initialize() {
 	  var marker;
 	  //placeMarker(event.latLng);
 	  position: location,
+	  lat=location.lat(),
+	  lon=location.lng(),
 	  $.fancybox({
         type: 'iframe',
-        href: 'teste.html?lat=location.lng()&lon=location.lon()'
+        href: 'xpto.html?lat='+ $lat + '&lon=' + $lon,
     });
   });
 
