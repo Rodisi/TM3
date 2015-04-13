@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
   </head>
   <body>
 
@@ -11,19 +12,46 @@
 <br>
 <input type="text" name="historia" placeholder="historia">
 <br>
-<input type="text" name="lat" value=$lat>
+<input type="text" name="lat" id="latitude">
 <br>
-<input type="text" name="lon" value=$lon>
+<input type="text" name="lon" id="longitude">
 <br><br>
 <input type="submit" value="Submit">
 
 
-  <script>
-  lat=$_GET["lat"];
-  lon=$_GET["lon"];
-  documment.write('aaaaaaaaaaaaaaaaa' + lat);
-  </script>
+
 </form>
+
+<script>
+  var QueryString = function () {
+  // This function is anonymous, is executed immediately and 
+  // the return value is assigned to QueryString!
+  var query_string = {};
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+        // If first entry with this name
+    if (typeof query_string[pair[0]] === "undefined") {
+      query_string[pair[0]] = pair[1];
+        // If second entry with this name
+    } else if (typeof query_string[pair[0]] === "string") {
+      var arr = [ query_string[pair[0]], pair[1] ];
+      query_string[pair[0]] = arr;
+        // If third or later entry with this name
+    } else {
+      query_string[pair[0]].push(pair[1]);
+    }
+  } 
+    return query_string;
+} ();
+  
+  lat=QueryString.lat;
+  lon=QueryString.lon;
+  document.write('aaaaaaaaaaaaaaaaa' + lat + ' ' + lon);
+  document.getElementById('latitude').value=lat;
+  document.getElementById('longitude').value=lon;
+  </script>
 
   
   </body>

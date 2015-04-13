@@ -194,12 +194,11 @@ function initialize() {
   google.maps.event.addListener(map, 'click', function(event) {
 	  var marker;
 	  //placeMarker(event.latLng);
-	  position: location,
-	  lat=location.lat(),
-	  lon=location.lng(),
+	  var latitude = event.latLng.lat();
+	  var longitude = event.latLng.lng();
 	  $.fancybox({
         type: 'iframe',
-        href: 'xpto.html?lat='+ $lat + '&lon=' + $lon,
+        href: 'teste.html?lat='+ latitude + '&lon=' + longitude,
     });
   });
 
