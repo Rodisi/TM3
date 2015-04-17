@@ -4,6 +4,7 @@
 
 	var toggleSide=0;
 	var toggleBottom=0;
+	$(".fancybox").fancybox();
 	 
 	$(".sidebar").click(function(){ 
 	
