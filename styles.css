@@ -117,3 +117,31 @@ html, body {
 	  overflow: hidden;
 	  
 	  }
+	  
+	  #contentorMarcador {
+	  
+	  width:430px;
+	  height:250px;
+	  background-color: white;
+	  color:black;
+	  
+	  }
+	  
+	  #textoMarcador {
+	  
+	  float:right;
+	  width: 200px;
+	  height: 100px;
+	  margin:0;
+	  overflow:auto;
+	  
+	  }
+	  
+	  #polaroid {
+	  
+	  float:left;
+	  width:200px;
+	  height:215px;
+	  margin:0;
+	  
+	  }

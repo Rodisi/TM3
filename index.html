@@ -173,11 +173,11 @@ function initialize() {
 
 }
 var locais = [
-  ['Bondi Beach', -33.890542, 151.274856, 4],
-  ['Coogee Beach', -33.923036, 151.259052, 5],
-  ['Cronulla Beach', -34.028249, 151.157507, 3],
-  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-  ['Maroubra Beach', -33.950198, 151.259302, 1]
+  ['Bondi Beach', -33.890542, 151.274856, 4, "Coiso Loiso"],
+  ['Coogee Beach', -33.923036, 151.259052, 5, "Ena Pa"],
+  ['Cronulla Beach', -34.028249, 151.157507, 3, "Porque Posso"],
+  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2, "GETTUPA"],
+  ['Maroubra Beach', -33.950198, 151.259302, 1, "Odeio esta net"]
 ];
 function setMarkers(map, locations) {
   // Add markers to the map
@@ -208,7 +208,7 @@ function setMarkers(map, locations) {
   for (var i = 0; i < locations.length; i++) {
     var beach = locations[i];
     var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
-	var mytext = 'Infowindow contents in HTML'
+	var mytext = '<div id="contentorMarcador"><div id="textoMarcador"><p>'+beach[4]+'</p></div><div id="polaroid"><img src="images/polaroid.png"/></div></div>';
 	var myinfowindow = new google.maps.InfoWindow({content: mytext});
     var marker = new google.maps.Marker({
         position: myLatLng,
