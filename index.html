@@ -83,6 +83,43 @@
 // feature. People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
 var map;
+var markerClusterer = null;
+
+      function refreshMap() {
+        if (markerClusterer) {
+          markerClusterer.clearMarkers();
+        }
+
+        var markers = [];
+
+        var markerImage = new google.maps.MarkerImage(imageUrl,
+          new google.maps.Size(24, 32));
+
+        for (var i = 0; i < 1000; ++i) {
+          var latLng = new google.maps.LatLng(data.photos[i].latitude,
+              data.photos[i].longitude)
+          var marker = new google.maps.Marker({
+            position: latLng,
+            draggable: true,
+            icon: markerImage
+          });
+          markers.push(marker);
+        }
+
+        var zoom = parseInt(document.getElementById('zoom').value, 10);
+        var size = parseInt(document.getElementById('size').value, 10);
+        var style = parseInt(document.getElementById('style').value, 10);
+        zoom = zoom === -1 ? null : zoom;
+        size = size === -1 ? null : size;
+        style = style === -1 ? null: style;
+
+        markerClusterer = new MarkerClusterer(map, markers, {
+          maxZoom: zoom,
+          gridSize: size,
+          styles: styles[style]
+        });
+      }
+
 function initialize() {
   var markers = [];
     map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -159,6 +196,12 @@ function initialize() {
     // Browser doesn't support Geolocation
     handleNoGeolocation(false);
   }
+  
+  function clearClusters(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        markerClusterer.clearMarkers();
+      }
   
   
   
