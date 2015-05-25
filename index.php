@@ -99,49 +99,22 @@ var locais = [
 ];
 function setMarkers(map, locations) {
   // Add markers to the map
-  // Marker sizes are expressed as a Size of X,Y
-  // where the origin of the image (0,0) is located
-  // in the top left of the image.
-  // Origins, anchor positions and coordinates of the marker
-  // increase in the X direction to the right and in
-  // the Y direction down.
-  var image = {
-    url: 'images/star.png',
-    // This marker is 48 pixels wide by 48 pixels tall.
-    size: new google.maps.Size(48, 48),
-    // The origin for this image is 0,0.
-    origin: new google.maps.Point(0,0),
-    // The anchor for this image is the base of the marker at 0,24.
-    anchor: new google.maps.Point(0, 24)
-  };
-  // Shapes define the clickable region of the icon.
-  // The type defines an HTML &lt;area&gt; element 'poly' which
-  // traces out a polygon as a series of X,Y points. The final
-  // coordinate closes the poly by connecting to the first
-  // coordinate.
-  var shape = {
-      coords: [1, 1, 1, 48, 48, 48, 48 , 1],
-      type: 'poly'
-  };
   for (var i = 0; i < locations.length; i++) {
     var beach = locations[i];
-    var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
 	var mytext = '<div id="contentorMarcador"><div id="textoMarcador"><p>'+beach[4]+'</p></div><div id="polaroid"><img src="images/polaroid.png"/></div></div>';
 	var myinfowindow = new google.maps.InfoWindow({content: mytext});
-    var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        icon: image,
-        shape: shape,
+    map.addMarker({
+        lat:beach[1],
+        lng: beach[2],
+		icon: "images/star.png",
         title: beach[0],
-        zIndex: beach[3],
-		infowindow: myinfowindow
-    });
-	google.maps.event.addListener(marker, 'click', function() {
-        this.infowindow.open(map, this);
-		map.setZoom(16);
-		map.setCenter(marker.getPosition());
-	});
+		infoWindow: {
+		content: mytext
+},
+    click: function(e) {
+		
+  }
+});
   }
   
 }
