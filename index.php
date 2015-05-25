@@ -164,12 +164,12 @@ $('#geocoding_form').submit(function(e){
 		<div class="global_search">
 			<form method="post" id="geocoding_form">
 				<input type="textbox" id="text_search"/>
-<<<<<<< HEAD
+
 				<input type="submit" id="search" value="Procurar"/>
-=======
-				<input type="submit" id="search" value="PROCURAR"/>
+
+				
 				</form>
->>>>>>> origin/master
+
 		</div>
 		
 		<div class="session_fields">
