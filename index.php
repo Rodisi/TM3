@@ -172,7 +172,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		</div>
 		
 		<div class="session_fields">
-		<?php include "sessions.php"; ?>
+		<?php include "session_nav.php"; ?>
 		</div>
 		
 	</div>
