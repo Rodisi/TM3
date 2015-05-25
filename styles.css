@@ -29,6 +29,21 @@ html, body {
 	  
 	  }
 	  
+	  .menu_icon{
+	  
+	  width:50px;
+	  height:50px;
+	  margin-right:0;
+	  margin-top:0%;
+	  padding:0;
+	  position: absolute;
+	  }
+	  
+	  #m_icon {
+	  width:50px;
+	  height:50px;
+	  }
+	  
 	  #titulo{
 		font-size: 32px;
 		position: absolute;
@@ -38,37 +53,67 @@ html, body {
 	  }
 	  
 	  .social_icons{
-	  position: absolute;
-		right: 10%;
+		position: absolute;
+		left: 10%;
 		top: 2%;
 	  }
+	  
+	  .global_search{
+		position:absolute;
+		right:40%;
+		left:40%;
+		top:2%;
+		width:20%;
+		height:5%;
+		color:#FFFFFF;
+		
+		
+	  
+	  }
+	  
+	  .global_search input[type="textbox"]{
+		width:70%;
+		height:85%;
+		left:0;
+		background-color:#484848;
+		border-style:solid;
+		color:#FFFFFF;
+	  }
+	  
+	  .global_search input[type="submit"]{
+		width:25%;
+		height:100%;
+		right:0;
+		background-color:#484848;
+		border-style:solid;
+		border:1px solid white;
+		color:#FFFFFF;
+		font-weight:bold;
+	  }
+	  
+	  
 	  .sidebar {
-	  border-radius: 25px 0px 0px 25px;
+	  
 		padding: 10px;
-		background:#000000;
-		width: 2%;
-		height: 57%;
+		background:#484848;
+		width: 75px;
+		height: 100%;
 		position: fixed;
 		right: 0px;
-		bottom: 20%;
-		z-index: 1;
-		border: 1px solid black;
 		
-		}
-		
-		.bottombar {
-		border-radius: 25px 25px 0px 0px;
-		padding: 10px;
-		background:#000000;
-		width: 50%;
-		height: 2%;
-		position: fixed;
-		left:25%;
-		margin:0 auto;
-		bottom: 0px;
 		z-index: 1;
-		border: 1px solid black;
-		}
+	}
+		
+	.session_fields{
+	
+	color:#FFFFFF;
+	right:10%;
+	top:2%;
+	width:20%;
+	position:absolute;
+	height:5%;
+	
+	}
 	  
       .controls {
         margin-top: 16px;

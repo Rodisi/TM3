@@ -1,7 +1,7 @@
 <?php
 
     try {
-        $dbh = new PDO('mysql:host=localhost;dbname=markitdb;charset=UTF-8', 'root', 'password');
+        $dbh = new PDO('mysql:host=localhost;dbname=markitdb;charset=UTF-8', 'root', '');
     }
     catch (PDOException $e) {
         die('unable to connect to database ' . $e->getMessage());

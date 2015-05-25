@@ -20,11 +20,11 @@
 	<!-- Optionally add helpers - button, thumbnail and/or media -->
 	<link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
-	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js"></script>
-    
+	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js"></script> 
 	<script type="text/javascript" src="slider-master/js/jssor.js"></script>
     <script type="text/javascript" src="slider-master/js/jssor.slider.js"></script>
 	<script type="text/javascript" src="toggles.js"></script>
+	<script type="text/javascript" src="gmaps.js"></script>
 	<script type="text/javascript" src="js-marker-clusterer/src/markerclusterer.js"></script>
 	
 	
@@ -263,10 +263,25 @@ google.maps.event.addDomListener(window, 'load', initialize);
 								  <area shape="rect" coords="48,0,80,32" href="http://www.twitter.com" target="_blank" alt="Twitter">
 								  <area shape="rect" coords="96,0,128,32" href="https://plus.google.com" target="_blank" alt="Google+">
 								</map>
-							</div>
 		</div>
-		<div class='sidebar'>
 		
+		<div class="global_search">
+				<input type="textbox" id="text_search"/>
+				<input type="submit" id="search" value="PROCURAR"/>
+		</div>
+		
+		<div class="session_fields">
+		<?php include "sessions.php"; ?>
+		</div>
+		
+	</div>
+		<div class='sidebar'>
+		<div class="menu_icon"><img id="m_icon" src="images/menu-alt.png" alt="Open/Close Navigation Bar"/></div>
+		<div class="nav_content">
+		
+		
+		
+		</div>
 		
 		
 		

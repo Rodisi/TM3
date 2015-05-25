@@ -6,17 +6,17 @@
 	var toggleBottom=0;
 	$(".fancybox").fancybox();
 	 
-	$(".sidebar").click(function(){ 
+	$("#m_icon").click(function(){ 
 	
 
 	if (toggleSide==0) {
 	var div = $(".sidebar");
-	div.animate({width: '15%'}, "slow");
+	div.animate({width: '350px'}, "slow");
 	toggleSide=1;
 	}
 	else {
 	var div = $(".sidebar");
-	div.animate({width: '2%'}, "slow");
+	div.animate({width: '75px'}, "slow");
 	toggleSide=0;
 	}
 	});
