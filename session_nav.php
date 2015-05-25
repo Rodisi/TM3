@@ -6,11 +6,11 @@ include 'config.php';
 
 
 /*** begin the session ***/
-session_start();
+/*session_start();*/
 
 if(!isset($_SESSION['user_id']))
 {
-    echo '<div class="login_form"><input type="textbox"/><input type="password"/></div>';
+    echo 'Login:<input type="textbox"/>Password:<input type="password"/><input type="submit" value="Entrar" action="login.php"/>';
 }else {
 	
 	

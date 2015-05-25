@@ -12,6 +12,7 @@ html, body {
 	  
 	   #map-canvas{
 	   height: 90%;
+	   
         margin: 0px;
         padding: 0px
 	   
@@ -92,6 +93,7 @@ html, body {
 	  }
 	  
 	  
+	  
 	  .sidebar {
 	  
 		padding: 10px;
@@ -107,13 +109,27 @@ html, body {
 	.session_fields{
 	
 	color:#FFFFFF;
-	right:10%;
+	right:0%;
 	top:2%;
-	width:20%;
+	width:600px;
 	position:absolute;
-	height:5%;
+	height:50px;
+	text-align:left;
+	padding:0;
 	
 	}
+	
+	.session_fields input{
+	width:120px;
+	height:30px;
+	margin-left:10px;
+	margin-right:10px;
+	background-color:#484848;
+	border-style:solid;
+	color:#FFFFFF;
+	
+	}
+	
 	  
       .controls {
         margin-top: 16px;
