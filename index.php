@@ -48,7 +48,7 @@ function initialize() {
   div: '#map-canvas',
   lat: 71.043333,
   lng: 77.028333,
-  click: function(e){
+  click: function(event){
 	  var marker;
 	  var latitude = event.latLng.lat();
 	  var longitude = event.latLng.lng();
@@ -56,9 +56,9 @@ function initialize() {
         type: 'iframe',
         href: 'teste.html?lat='+ latitude + '&lon=' + longitude,
     });
-  )
-  }
-});
+	},
+	});
+
   var defaultBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(-33.8902, 151.1759),
       new google.maps.LatLng(-33.8474, 151.2631));
