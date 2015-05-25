@@ -41,6 +41,20 @@
 	
 
 var map;
+GMaps.geolocate({
+  success: function(position) {
+    map.setCenter(position.coords.latitude, position.coords.longitude);
+  },
+  error: function(error) {
+    alert('Geolocation failed: '+error.message);
+  },
+  not_supported: function() {
+    alert("Your browser does not support geolocation");
+  },
+  always: function() {
+    //alert("Done!");
+  }
+});
 
 function initialize() {
   var markers = [];
@@ -131,20 +145,7 @@ function setMarkers(map, locations) {
   }
   
 }
-function handleNoGeolocation(errorFlag) {
-  if (errorFlag) {
-    var content = 'Error: The Geolocation service failed.';
-  } else {
-    var content = 'Error: Your browser doesn\'t support geolocation.';
-  }
-  var options = {
-    map: map,
-    position: new google.maps.LatLng(60, 105),
-    content: content
-  };
-  var infowindow = new google.maps.InfoWindow(options);
-  map.setCenter(options.position);
-}
+
 google.maps.event.addDomListener(window, 'load', initialize);
     </script>
     <style>
