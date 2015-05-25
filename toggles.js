@@ -21,20 +21,6 @@
 	}
 	});
 	
-	$(".bottombar").click(function(){ 
-	
-
-	if (toggleBottom==0) {
-	var div = $(".bottombar");
-	div.animate({height: '20%'}, "slow");
-	toggleBottom=1;
-	}
-	else {
-	var div = $(".bottombar");
-	div.animate({height: '2%'}, "slow");
-	toggleBottom=0;
-	}
-	});
 	
 	
 	});
