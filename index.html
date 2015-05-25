@@ -25,7 +25,7 @@
 	<script type="text/javascript" src="slider-master/js/jssor.js"></script>
     <script type="text/javascript" src="slider-master/js/jssor.slider.js"></script>
 	<script type="text/javascript" src="toggles.js"></script>
-	<script type="text/javascript" src="js-marker-clusterer/src/markerclusterer.js"></script>
+	<script type="text/javascript" src="gmaps.js"></script>
 	
 	
     <script>
@@ -38,52 +38,16 @@
 	
 	
 	
-// This example adds a search box to a map, using the Google Place Autocomplete
-// feature. People can enter geographical searches. The search box will return a
-// pick list containing a mix of places and predicted search terms.
+
 var map;
-var markerClusterer = null;
-
-      function refreshMap() {
-        if (markerClusterer) {
-          markerClusterer.clearMarkers();
-        }
-
-        var markers = [];
-
-        var markerImage = new google.maps.MarkerImage(imageUrl,
-          new google.maps.Size(24, 32));
-
-        for (var i = 0; i < 1000; ++i) {
-          var latLng = new google.maps.LatLng(data.photos[i].latitude,
-              data.photos[i].longitude)
-          var marker = new google.maps.Marker({
-            position: latLng,
-            draggable: true,
-            icon: markerImage
-          });
-          markers.push(marker);
-        }
-
-        var zoom = parseInt(document.getElementById('zoom').value, 10);
-        var size = parseInt(document.getElementById('size').value, 10);
-        var style = parseInt(document.getElementById('style').value, 10);
-        zoom = zoom === -1 ? null : zoom;
-        size = size === -1 ? null : size;
-        style = style === -1 ? null: style;
-
-        markerClusterer = new MarkerClusterer(map, markers, {
-          maxZoom: zoom,
-          gridSize: size,
-          styles: styles[style]
-        });
-      }
 
 function initialize() {
   var markers = [];
-    map = new google.maps.Map(document.getElementById('map-canvas'), {
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
+    map = new GMaps({
+  div: '#map-canvas',
+  lat: 71.043333,
+  lng: 77.028333
+});
   var defaultBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(-33.8902, 151.1759),
       new google.maps.LatLng(-33.8474, 151.2631));
@@ -274,7 +238,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		</div>
 		
 		
-			<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+			
 			<div id="map-canvas"></div>
 	</div>
   </body>
