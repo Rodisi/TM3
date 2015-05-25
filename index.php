@@ -121,6 +121,26 @@ function setMarkers(map, locations) {
 
 google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+	<script>
+$('#geocoding_form').submit(function(e){
+        e.preventDefault();
+        GMaps.geocode({
+          address: $('#text_search').val().trim(),
+          callback: function(results, status){
+            if(status=='OK'){
+              var latlng = results[0].geometry.location;
+              map.setCenter(latlng.lat(), latlng.lng());
+              map.addMarker({
+                lat: latlng.lat(),
+                lng: latlng.lng()
+              });
+            }
+          }
+        });
+      });
+}
+</script>
+	
     <style>
       #target {
         width: 345px;
@@ -141,8 +161,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		</div>
 		
 		<div class="global_search">
+			<form method="post" id="geocoding_form">
 				<input type="textbox" id="text_search"/>
 				<input type="submit" id="search" value="PROCURAR"/>
+				</form>
 		</div>
 		
 		<div class="session_fields">
