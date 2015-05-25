@@ -6,15 +6,26 @@ include 'config.php';
 
 
 /*** begin the session ***/
-/*session_start();*/
+/***$row['Nome'].'<br><a href="">Criar Rota</a><input type="submit" value="LOGOUT" action="logout.php"**/
+session_start();
 
 if(!isset($_SESSION['user_id']))
 {
-    echo 'Login:<input type="textbox"/>Password:<input type="password"/><input type="submit" value="Entrar" action="login.php"/>';
+    echo 'Login:<form action="login.php" method="post"><input type="textbox" id="username" name="username"/>Password:<input type="password" id="password" name="login"/><input type="submit" value="Entrar" action="login.php"/></form>';
 }else {
 	
+	$user_id=$_SESSION['user_id'];
+	$sql="select * from user where UserID='$user_id'";
+	$result = mysqli_query($link, $sql);
 	
-	$sql="select * from user where ";
+	while($row = mysqli_fetch_array($result)){
+	
+	echo 'Bem-Vindo ';
+
+	
+	
+	}
+	
 }
 
 ?>

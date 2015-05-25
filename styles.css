@@ -73,8 +73,8 @@ html, body {
 	  }
 	  
 	  .global_search input[type="textbox"]{
-		width:70%;
-		height:85%;
+		width:200px;
+		height:30px;
 		left:0;
 		background-color:#484848;
 		border-style:solid;
@@ -82,14 +82,15 @@ html, body {
 	  }
 	  
 	  .global_search input[type="submit"]{
-		width:25%;
-		height:100%;
+		width:120px;
+		height:30px;
 		right:0;
+		margin-left:10px;
 		background-color:#484848;
 		border-style:solid;
 		border:1px solid white;
 		color:#FFFFFF;
-		font-weight:bold;
+		
 	  }
 	  
 	  

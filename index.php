@@ -25,6 +25,7 @@
     <script type="text/javascript" src="slider-master/js/jssor.slider.js"></script>
 	<script type="text/javascript" src="toggles.js"></script>
 	<script type="text/javascript" src="gmaps.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script> <!-- depois para o autocomplete --->
 
 	<script type="text/javascript" src="js-marker-clusterer/src/markerclusterer.js"></script>
 
@@ -142,7 +143,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		
 		<div class="global_search">
 				<input type="textbox" id="text_search"/>
-				<input type="submit" id="search" value="PROCURAR"/>
+				<input type="submit" id="search" value="Procurar"/>
 		</div>
 		
 		<div class="session_fields">
