@@ -1,11 +1,21 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html>
   <head>
     
   </head>
   <body>
 
-  
+<?php
+
+
+if(!isset($_SESSION['user_id'])){
+
+echo '<p>Para colocar Marcadores, por favor faça Log-in.</p>';
+
+}else{
+
+?>	
   
 <form action="guardarmarcador.php">
 <input type="file" name="imagem" >
@@ -22,6 +32,8 @@
 
 </form>
 
+
+<?php } ?>
 <script>
   var QueryString = function () {
   // This function is anonymous, is executed immediately and 

@@ -1,8 +1,8 @@
 <?php
-
-
 /*** begin our session ***/
 session_start();
+
+
 
 /*** if we are here the data is valid and we can insert it into database ***/
     $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);

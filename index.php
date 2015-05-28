@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<? session_start(); ?>
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -72,7 +73,7 @@ function initialize() {
 	  var longitude = event.latLng.lng();
 	  $.fancybox({
         type: 'iframe',
-        href: 'teste.html?lat='+ latitude + '&lon=' + longitude,
+        href: 'placemarker.php?lat='+ latitude + '&lon=' + longitude,
     });
 	},
 	});
@@ -149,14 +150,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		<div class="global_search">
 			<form method="post" id="geocoding_form">
 				<input type="textbox" id="text_search"/>
-<<<<<<< HEAD
 
-				<input type="submit" id="search" value="Procurar"/>
 
 				
-=======
+
+				
+
 				<input type="submit" id="search" value="Procurar" method="Post"/>
->>>>>>> origin/master
+
 				</form>
 
 		</div>
