@@ -3,9 +3,10 @@
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="jQuery-TE/jquery-te-1.4.0.css">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple">
-    <meta charset="utf-8">
+	<meta charset="UTF-8">
 
 	
 	
@@ -27,20 +28,26 @@
 	<script type="text/javascript" src="toggles.js"></script>
 	<script type="text/javascript" src="gmaps.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script> <!-- depois para o autocomplete --->
-
+	
 	<script type="text/javascript" src="js-marker-clusterer/src/markerclusterer.js"></script>
 
 	
-    <script>
+	
+		
+	<script>
+	
+
+
+
+
+
+		
 	
 	
-	
-	
-       
+    
 
 	
-	
-	
+
 
 var map;
 
@@ -187,11 +194,20 @@ $('#geocoding_form').submit(function(e){
 		<?php include "session_nav.php"; ?>
 		</div>
 		
+		
+		<?php if (isset($_SESSION['user_id'])){
+			
+			
+		?>
+		<div class="menu_icon"><img id="m_icon" src="images/menu-alt.png" alt="Open/Close Navigation Bar"/></div>
+		
+		<?php } ?>
 	</div>
 		<div class='sidebar'>
-		<div class="menu_icon"><img id="m_icon" src="images/menu-alt.png" alt="Open/Close Navigation Bar"/></div>
+		
 		<div class="nav_content">
 		
+		<?php include 'sidecontent.php'; ?>
 		
 		
 		</div>

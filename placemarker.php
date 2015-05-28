@@ -2,10 +2,15 @@
 <?php session_start(); ?>
 <html>
   <head>
-    
+    <script type="text/javascript" src="jQuery-TE/jquery-te-1.4.0.min.js"></script>
   </head>
   <body>
-
+<script>
+	$( document ).ready(function() {
+	$("#texto_editavel").jqte();
+	});
+	
+</script>
 <?php
 
 
@@ -17,14 +22,14 @@ echo '<p>Para colocar Marcadores, por favor faça Log-in.</p>';
 
 ?>	
   
-<form action="guardarmarcador.php">
-<input type="file" name="imagem" >
+<form action="guardarmarcador.php" method="post">
+<input type="multipart/form-data" name="imagem" >
 <br>
-<input type="textarea" name="historia" onfocus="if(this.value == 'Conte-nos a sua historia!') { this.value = ''; }" value="Conte-nos a sua historia!"></textarea>
+<input type="textarea" name="historia" id ="texto_editavel"  onfocus="if(this.value == 'Conte-nos a sua historia!') { this.value = ''; }" value="Conte-nos a sua historia!"></textarea>
 <br>
-<input type="text" name="lat" id="latitude">
+<input type="hidden" name="lat" id="latitude">
 <br>
-<input type="text" name="lon" id="longitude">
+<input type="hidden" name="lon" id="longitude">
 <br><br>
 <input type="submit" value="Submit">
 

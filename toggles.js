@@ -16,7 +16,7 @@
 	}
 	else {
 	var div = $(".sidebar");
-	div.animate({width: '75px'}, "slow");
+	div.animate({width: '0'}, "slow");
 	toggleSide=0;
 	}
 	});
