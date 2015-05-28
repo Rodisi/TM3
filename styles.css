@@ -249,4 +249,5 @@ li {
 li:hover {
   background: #eee;
   cursor: pointer;
+  color:#000000;
 }

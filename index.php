@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<? session_start(); ?>
+<? session_start(); 
+
+include 'config.php'; ?>
+
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -36,19 +39,6 @@
 		
 	<script>
 	
-
-
-
-
-
-		
-	
-	
-    
-
-	
-
-
 var map;
 
 
@@ -93,27 +83,36 @@ function initialize() {
   
   setMarkers(map, locais);
   
-  
-  
- 
-  
-  
-  
-  
-
 }
-var locais = [
+
+
+
+<?php
+
+$locais =array();
+$sql="SELECT * from marker";
+$result=mysqli_query($link, $sql);
+
+while($row = mysqli_fetch_array($result)){
+	
+	$locais[]= array($row['titulo'],$row['lat'],$row['lon'],$row['MarkerID'],$row['texto'],$row['imagem']);
+}
+echo 'var locais = '.json_encode($locais).';';
+?>
+
+//para testar sem DB
+/*var locais = [
   ['Bondi Beach', -33.890542, 151.274856, 4, "Coiso Loiso"],
   ['Coogee Beach', -33.923036, 151.259052, 5, "Ena Pa"],
   ['Cronulla Beach', -34.028249, 151.157507, 3, "Porque Posso"],
   ['Manly Beach', -33.80010128657071, 151.28747820854187, 2, "GETTUPA"],
   ['Maroubra Beach', -33.950198, 151.259302, 1, "Odeio esta net"]
-];
+];*/
 function setMarkers(map, locations) {
   // Add markers to the map
   for (var i = 0; i < locations.length; i++) {
     var beach = locations[i];
-	var mytext = '<div id="contentorMarcador"><div id="textoMarcador"><p>'+beach[4]+'</p></div><div id="polaroid"><img src="images/polaroid.png"/></div></div>';
+	var mytext = '<div id="contentorMarcador"><div id="textoMarcador"><p>'+beach[4]+'</p></div><div id="polaroid"><img src="'+beach[5]+'" width="200" height="215"/></div></div>';
 	var myinfowindow = new google.maps.InfoWindow({content: mytext});
     map.addMarker({
         lat:beach[1],
