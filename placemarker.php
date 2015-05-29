@@ -3,6 +3,8 @@
 <html>
   <head>
     <script type="text/javascript" src="jQuery-TE/jquery-te-1.4.0.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="jQuery-TE/jquery-te-1.4.0.css">
   </head>
   <body>
 <script>
@@ -22,14 +24,16 @@ echo '<p>Para colocar Marcadores, por favor faça Log-in.</p>';
 
 ?>	
   
-<form action="guardarmarcador.php" method="post">
-<input type="multipart/form-data" name="imagem" >
+<form action="guardarmarcador.php" method="post" enctype="multipart/form-data">
+<input type="file" name="imagem">
 <br>
 <input type="textarea" name="historia" id ="texto_editavel"  onfocus="if(this.value == 'Conte-nos a sua historia!') { this.value = ''; }" value="Conte-nos a sua historia!"></textarea>
 <br>
-<input type="hidden" name="lat" id="latitude">
+<input type="text" name="titulo"/>
 <br>
-<input type="hidden" name="lon" id="longitude">
+<input type="hidden" name="lat" id="latitude"/>
+<br>
+<input type="hidden" name="lon" id="longitude"/>
 <br><br>
 <input type="submit" value="Submit">
 
