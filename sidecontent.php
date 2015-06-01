@@ -33,7 +33,7 @@ $result = mysqli_query($link, $sql);
 	
 	echo '<div id="marcadores">';
 	
-	echo '<p>Os Seus Marcadores</p>';
+	echo '<p>Os Seus Marcadores</p><br>';
 	echo '<ul>';
 	
 	while($row = mysqli_fetch_array($result)){
@@ -45,7 +45,7 @@ $result = mysqli_query($link, $sql);
 	echo '<h3>'.$row['titulo'].'</h3>';
 	
 	echo '</li>';
-	echo '</a>';
+	
 	
 	
 	}
@@ -54,6 +54,29 @@ $result = mysqli_query($link, $sql);
 	echo '</div>';
 }
 
+
+$sql="SELECT * from rota where UserID='$UserID' ORDER BY RotaID DESC";
+
+$result = mysqli_query($link, $sql);
+
+
+	echo '<div id="rotas">';
+	echo '<p>As Suas Rotas</p><br>';
+	echo '<ul>';
+	
+	while($row = mysqli_fetch_array($result)){
+		
+		
+		echo '<li>';
+		echo '<img src="images/sign.jpg"/>';
+		echo '<h3>'.$row['titulo_rota'].'</h3>';
+		echo '</li>';
+	}
+	
+	
+	echo '</ul>';
+	echo '</div>';
+	echo '<div><p onClick="janelaRotas()"><a href="">Deseja Criar uma Nova rota?</a></p></div>';
 
 ?>
 

@@ -164,6 +164,7 @@ html, body {
       }
       .pac-container {
         font-family: Roboto;
+		z-index: 9999;
       }
       #type-selector {
         color: #fff;
@@ -251,3 +252,21 @@ li:hover {
   cursor: pointer;
   color:#000000;
 }
+
+
+p {
+font-weight: bold;
+}
+
+#marcadores {
+height:350px;
+overflow-y: auto;
+overflow-x: hidden;
+}
+
+#rotas {
+height:40%;
+overflow-y: auto;
+overflow-x: hidden;
+}
+
