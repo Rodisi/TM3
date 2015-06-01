@@ -30,7 +30,8 @@ include 'config.php'; ?>
     <script type="text/javascript" src="slider-master/js/jssor.slider.js"></script>
 	<script type="text/javascript" src="toggles.js"></script>
 	<script type="text/javascript" src="gmaps.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script> <!-- depois para o autocomplete --->
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	
 	<script type="text/javascript" src="js-marker-clusterer/src/markerclusterer.js"></script>
 
@@ -42,7 +43,44 @@ include 'config.php'; ?>
 var map;
 
 
+
 function initialize() {
+	
+	/**$( "#text_search" ).autocomplete({
+    source: "search.php",
+	minLength: 2,
+	select: function(event, ui)
+	{
+	$("input#text_search").val(ui.item.value);
+    $("#geocoding_form").submit();
+	},		
+    });**/
+	
+	autocomplete = new google.maps.places.Autocomplete(
+      /** @type {HTMLInputElement} */(document.getElementById('#text_search')),
+      {
+        types: ['(country)'],
+        
+      });
+  places = new google.maps.places.PlacesService(map);
+
+ google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+ 
+ // When the user selects a city, get the place details for the city and
+// zoom the map in on the city.
+function onPlaceChanged() {
+  var place = autocomplete.getPlace();
+  if (place.geometry) {
+    map.panTo(place.geometry.location);
+    map.setZoom(15);
+    search();
+  } else {
+    document.getElementById('autocomplete').placeholder = 'Enter a city';
+  }
+
+}
+
+	
 	GMaps.geolocate({
   success: function(position) {
     map.setCenter(position.coords.latitude, position.coords.longitude);
@@ -57,7 +95,7 @@ function initialize() {
     //alert("Done!");
   }
 });
-	
+
 	
   var markers = [];
     map = new GMaps({
@@ -70,6 +108,11 @@ function initialize() {
 	  var longitude = event.latLng.lng();
 	  $.fancybox({
         type: 'iframe',
+		
+		afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+              parent.location.reload(true);
+			  
+            },
         href: 'placemarker.php?lat='+ latitude + '&lon=' + longitude,
     });
 	},
@@ -85,9 +128,25 @@ function initialize() {
   
 }
 
+/**function ProcuraMarcador(titulo){
+	
+window.location.href = "index.php?titulo=" + titulo; 
+
+};**/
 
 
 <?php
+
+/**if(isset($_GET['titulo'])){
+	
+	$titulo=$_GET['titulo'];
+	
+	$sql="Select * from marker where titulo='$titulo'";
+	
+	$result = mysqli_query($link, $sql);
+	
+	
+}**/
 
 $locais =array();
 $sql="SELECT * from marker";
@@ -108,6 +167,10 @@ echo 'var locais = '.json_encode($locais).';';
   ['Manly Beach', -33.80010128657071, 151.28747820854187, 2, "GETTUPA"],
   ['Maroubra Beach', -33.950198, 151.259302, 1, "Odeio esta net"]
 ];*/
+
+
+				
+				
 function setMarkers(map, locations) {
   // Add markers to the map
   for (var i = 0; i < locations.length; i++) {
@@ -154,7 +217,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		</div>
 		
 		<div class="global_search">
-			<form method="post" id="geocoding_form">
+			<form method="post" id="geocoding_form"> <!--onSubmit="ProcuraMarcador(input#text_search)"-->
 				<input type="textbox" id="text_search"/>
 
 

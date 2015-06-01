@@ -34,6 +34,7 @@ $result = mysqli_query($link, $sql);
 if($result){
 	
 	echo 'Marcador criado.';
+	
 }else{
 	
 	echo 'Ocorreu um problema.';
