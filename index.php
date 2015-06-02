@@ -16,22 +16,28 @@ include 'config.php'; ?>
     <title>Mark It! - Tell your stories</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-	<!-- Add mousewheel plugin (this is optional) -->
-	<script type="text/javascript" src="fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+	
 
-	<!-- Add fancyBox -->
-	<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
-	<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js"></script>
-	<!-- Optionally add helpers - button, thumbnail and/or media -->
-	<link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
-	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
-	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js"></script> 
+	
+	
+	
 	<script type="text/javascript" src="slider-master/js/jssor.js"></script>
     <script type="text/javascript" src="slider-master/js/jssor.slider.js"></script>
 	<script type="text/javascript" src="toggles.js"></script>
 	<script type="text/javascript" src="gmaps.js"></script>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<!-- Add fancyBox -->
+	<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js"></script>
+	<!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+	<!-- Optionally add helpers - button, thumbnail and/or media -->
+	<link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
+	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js"></script> 
+	
+	<script src="geocomplete/jquery.geocomplete.js"></script>
 	
 	<script type="text/javascript" src="js-marker-clusterer/src/markerclusterer.js"></script>
 
@@ -56,29 +62,23 @@ function initialize() {
 	},		
     });**/
 	
-	autocomplete = new google.maps.places.Autocomplete(
-      /** @type {HTMLInputElement} */(document.getElementById('#text_search')),
-      {
-        types: ['(country)'],
-        
-      });
-  places = new google.maps.places.PlacesService(map);
+$("#text_search").geocomplete();  // Option 1: Call on element.
 
- google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
- 
- // When the user selects a city, get the place details for the city and
-// zoom the map in on the city.
-function onPlaceChanged() {
-  var place = autocomplete.getPlace();
-  if (place.geometry) {
-    map.panTo(place.geometry.location);
-    map.setZoom(15);
-    search();
-  } else {
-    document.getElementById('autocomplete').placeholder = 'Enter a city';
-  }
+function janelaRotas () {
+	
+	$.fancybox({
+        type: 'iframe',
+		
+		afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+              parent.location.reload(true);
+			  
+            },
+        href: 'placeroute.php',
+    });
+	
+	
+};
 
-}
 
 	
 	GMaps.geolocate({
@@ -152,9 +152,28 @@ $locais =array();
 $sql="SELECT * from marker";
 $result=mysqli_query($link, $sql);
 
+
+
 while($row = mysqli_fetch_array($result)){
 	
-	$locais[]= array($row['titulo'],$row['lat'],$row['lon'],$row['MarkerID'],$row['texto'],$row['imagem']);
+	//verifica se o marcador é do utilizador logged-in e muda icone (vermelhor é marcadores do utilizador, amarelo de todos os outros)
+	if (isset($_SESSION['user_id'])){
+		
+		
+	
+		if ($row['UserID']==$_SESSION['user_id']){
+			
+			$icon = 'images/star_red.png';
+		}else {
+			
+			$icon = 'images/star.png';
+		}
+	}else{
+		
+		$icon = 'images/star.png';
+	}
+	
+	$locais[]= array($row['titulo'],$row['lat'],$row['lon'],$row['MarkerID'],$row['texto'],$row['imagem'],$icon);
 }
 echo 'var locais = '.json_encode($locais).';';
 ?>
@@ -169,18 +188,21 @@ echo 'var locais = '.json_encode($locais).';';
 ];*/
 
 
+
+
+
 				
 				
 function setMarkers(map, locations) {
   // Add markers to the map
   for (var i = 0; i < locations.length; i++) {
     var beach = locations[i];
-	var mytext = '<div id="contentorMarcador"><div id="textoMarcador"><p>'+beach[4]+'</p></div><div id="polaroid"><img src="'+beach[5]+'" width="200" height="215"/></div></div>';
+	var mytext = '<div id="contentorMarcador"><div id="textoMarcador"><h1>'+beach[0]+'</h1><br><p>'+beach[4]+'</p></div><div id="polaroid"><img src="'+beach[5]+'" width="200" height="215"/></div></div>';
 	var myinfowindow = new google.maps.InfoWindow({content: mytext});
     map.addMarker({
         lat:beach[1],
         lng: beach[2],
-		icon: "images/star.png",
+		icon: beach[6],
         title: beach[0],
 		infoWindow: {
 		content: mytext
@@ -205,6 +227,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   </head>
   <body>
   <div class="container">
+  
 	<div id="header">
 		<div id=titulo> </div>
 		<div class="social_icons">
@@ -218,7 +241,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		
 		<div class="global_search">
 			<form method="post" id="geocoding_form"> <!--onSubmit="ProcuraMarcador(input#text_search)"-->
-				<input type="textbox" id="text_search"/>
+				<input type="textbox" id="text_search" onFocus="this.value='';"/>
 
 
 				
@@ -265,6 +288,7 @@ $('#geocoding_form').submit(function(e){
 		
 		<?php } ?>
 	</div>
+	
 		<div class='sidebar'>
 		
 		<div class="nav_content">
@@ -282,6 +306,7 @@ $('#geocoding_form').submit(function(e){
 		
 			
 			<div id="map-canvas"></div>
+
 	</div>
   </body>
 </html>

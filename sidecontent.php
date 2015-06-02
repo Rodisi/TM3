@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<meta charset="UTF-8">
 <script>
 		function centrar(lat, lon){
 		
@@ -8,6 +8,21 @@
 		
 		
 	};
+	
+	function janelaRotas () {
+	
+	$.fancybox({
+        type: 'iframe',
+		
+		afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+              parent.location.reload(true);
+			  
+            },
+        href: 'placeroute.php',
+    });
+	
+	
+};
 
 </script>
 
@@ -31,9 +46,13 @@ $sql="SELECT * from marker where UserID='$UserID' ORDER BY MarkerID DESC";
 
 $result = mysqli_query($link, $sql);
 	
+$num_rows= mysqli_num_rows($result);	
+
+if ($num_rows>0){
+	echo '<p>Os Seus Marcadores</p><br>';
 	echo '<div id="marcadores">';
 	
-	echo '<p>Os Seus Marcadores</p><br>';
+	
 	echo '<ul>';
 	
 	while($row = mysqli_fetch_array($result)){
@@ -52,6 +71,10 @@ $result = mysqli_query($link, $sql);
 	
 	echo '</ul>';
 	echo '</div>';
+	echo '<hr>';
+}else{
+	
+	echo '<p>Ainda não tem Marcadores!</p>';
 }
 
 
@@ -59,9 +82,12 @@ $sql="SELECT * from rota where UserID='$UserID' ORDER BY RotaID DESC";
 
 $result = mysqli_query($link, $sql);
 
+$num_rows= mysqli_num_rows($result);	
 
-	echo '<div id="rotas">';
+if ($num_rows>0){
 	echo '<p>As Suas Rotas</p><br>';
+	echo '<div id="rotas">';
+	
 	echo '<ul>';
 	
 	while($row = mysqli_fetch_array($result)){
@@ -76,7 +102,10 @@ $result = mysqli_query($link, $sql);
 	
 	echo '</ul>';
 	echo '</div>';
-	echo '<div><p onClick="janelaRotas()"><a href="">Deseja Criar uma Nova rota?</a></p></div>';
-
+}else{
+	echo '<p>Ainda não tem Rotas!</p>';
+}
+	echo '<div><a href="javascript:;" onClick="janelaRotas();">Deseja Criar uma Nova rota?</a></div>';
+	
+}
 ?>
-

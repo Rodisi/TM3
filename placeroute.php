@@ -5,11 +5,26 @@
 
 <head>
 <link rel="stylesheet" type="text/css" href="selesort.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 </head>
 
 <body>
+<script>
 
+
+function initialize() {
+$( "a#listagem" )
+    .sortable({ handle: ".handle" })
+    .selectable({ filter: "li", cancel: ".handle" })
+    .find( "li" )
+        .addClass( "ui-corner-all" )
+        .prepend( "<div class='handle'><span class='ui-icon ui-icon-carat-2-n-s'></span></div>" );
+		
+};
+
+</script>
 <?php
 
 
@@ -36,20 +51,7 @@ echo '</ul>';
 ?>
 
 
-<script>
 
-
-function initialize() {
-$( "#listagem" )
-    .sortable({ handle: ".handle" })
-    .selectable({ filter: "li", cancel: ".handle" })
-    .find( "li" )
-        .addClass( "ui-corner-all" )
-        .prepend( "<div class='handle'><span class='ui-icon ui-icon-carat-2-n-s'></span></div>" );
-		
-};
-
-</script>
 
 
 

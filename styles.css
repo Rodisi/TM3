@@ -256,6 +256,8 @@ li:hover {
 
 p {
 font-weight: bold;
+margin-right:10px;
+margin-left:10px;
 }
 
 #marcadores {
@@ -265,7 +267,7 @@ overflow-x: hidden;
 }
 
 #rotas {
-height:40%;
+height:350px;
 overflow-y: auto;
 overflow-x: hidden;
 }
