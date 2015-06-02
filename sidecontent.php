@@ -9,7 +9,9 @@
 		
 	};
 	
-	function janelaRotas () {
+
+	
+	/**function janelaRotas () {
 	
 	$.fancybox({
         type: 'iframe',
@@ -22,7 +24,8 @@
     });
 	
 	
-};
+};**/
+
 
 </script>
 
@@ -105,7 +108,7 @@ if ($num_rows>0){
 }else{
 	echo '<p>Ainda não tem Rotas!</p>';
 }
-	echo '<div><a href="javascript:;" onClick="janelaRotas();">Deseja Criar uma Nova rota?</a></div>';
+	echo '';
 	
 }
 ?>

@@ -272,3 +272,20 @@ overflow-y: auto;
 overflow-x: hidden;
 }
 
+.bottombar {
+
+width:40%;
+height:0px;
+background-color:#484848;
+color:#FFFFFF;
+z-index: 1;
+position: fixed;
+bottom:0%;
+right:30&;
+left:30%;
+
+}
+
+#selesort{
+padding:10px;
+}

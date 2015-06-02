@@ -21,6 +21,21 @@
 	}
 	});
 	
+	$(".clickToggle").click(function(){ 
+	
+
+	if (toggleBottom==0) {
+	var div2 = $(".bottombar");
+	div2.animate({height: '450px'}, "slow");
+	toggleBottom=1;
+	}
+	else {
+	var div2 = $(".bottombar");
+	div2.animate({height: '0'}, "slow");
+	toggleBottom=0;
+	}
+	});
+	
 	
 	
 	});

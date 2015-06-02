@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <? session_start(); 
 
-include 'config.php'; ?>
+include 'config.php'; 
+if(isset($_SESSION['user_id'])){
+	
+	$user_id=$_SESSION['user_id'];
+}
+?>
 
 <html>
   <head>
@@ -25,6 +30,10 @@ include 'config.php'; ?>
     <script type="text/javascript" src="slider-master/js/jssor.slider.js"></script>
 	<script type="text/javascript" src="toggles.js"></script>
 	<script type="text/javascript" src="gmaps.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="selesort.css">
+
+	
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<!-- Add fancyBox -->
@@ -64,7 +73,7 @@ function initialize() {
 	
 $("#text_search").geocomplete();  // Option 1: Call on element.
 
-function janelaRotas () {
+/**function janelaRotas () {
 	
 	$.fancybox({
         type: 'iframe',
@@ -77,7 +86,15 @@ function janelaRotas () {
     });
 	
 	
-};
+};**/
+
+
+$( "#listagem" )
+    .sortable({ handle: ".handle" })
+    .selectable({ filter: "li", cancel: ".handle" })
+    .find( "li" )
+    .addClass( "ui-corner-all" )
+    .prepend( "<div class='handle'><span class='ui-icon ui-icon-carat-2-n-s'></span></div>" );
 
 
 	
@@ -279,27 +296,52 @@ $('#geocoding_form').submit(function(e){
 		<?php include "session_nav.php"; ?>
 		</div>
 		
-		
 		<?php if (isset($_SESSION['user_id'])){
 			
 			
 		?>
-		<div class="menu_icon"><img id="m_icon" src="images/menu-alt.png" alt="Open/Close Navigation Bar"/></div>
-		
-		<?php } ?>
-	</div>
-	
-		<div class='sidebar'>
-		
-		<div class="nav_content">
-		
-		<?php include 'sidecontent.php'; ?>
-		
-		
+		<div class="other">
+		<img class="clickToggle" src="images/sign.jpg" width="50px" height="50px"/>
 		</div>
 		
 		
 		
+		<div class="menu_icon"><img id="m_icon" src="images/menu-alt.png" alt="Open/Close Navigation Bar"/></div>
+		
+		<?php } ?>
+	</div>
+		<div class="bottombar">
+		
+		<?php
+
+
+
+		
+
+		$sql="Select * from marker where UserID='$user_id'";
+		$result = mysqli_query($link, $sql);
+		?>
+			<div class ="selesort">
+				<ul id="listagem">
+				<?php
+				
+				while($row = mysqli_fetch_array($result)){
+					echo '<li value="'.$row['MarkerID'].'">'.$row['titulo'].'</li>';
+				}
+				?>
+				
+				</ul>
+			</div>
+		
+		</div>
+		<div class='sidebar'>
+		
+			<div class="nav_content">
+		
+			<?php include 'sidecontent.php'; ?>
+		
+		
+			</div>
 		
 		</div>
 		

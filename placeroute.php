@@ -15,7 +15,7 @@
 
 
 function initialize() {
-$( "a#listagem" )
+$( "#listagem" )
     .sortable({ handle: ".handle" })
     .selectable({ filter: "li", cancel: ".handle" })
     .find( "li" )
