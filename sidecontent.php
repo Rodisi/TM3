@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <script>
-		function centrar(lat, lon){
+function centrar(lat, lon){
 		
 			
-			map.setCenter(lat, lon);
+map.setCenter(lat, lon);
+
 		
-		
-	};
+};
+
+function showRoute(RouteID){
+	//abre fancybox
+	//passa RouteID por post
+	//faz query
+	//abre mapa estatico
+	//desenha rota
+	
+	
+	$.fancybox({
+        type: 'iframe',
+        href: 'showroute.php?RouteID='+RouteID,
+    })
+};
 	
 
 	
@@ -96,7 +110,7 @@ if ($num_rows>0){
 	while($row = mysqli_fetch_array($result)){
 		
 		
-		echo '<li>';
+		echo '<li onClick="showRoute('.$row['RotaID'].')">';
 		echo '<img src="images/sign.png"/>';
 		echo '<h3>'.$row['titulo_rota'].'</h3>';
 		echo '</li>';
