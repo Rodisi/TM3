@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<? session_start(); 
+<?php session_start(); 
 
 include 'config.php'; 
-if(isset($_SESSION['user_id'])){
-	
-	$user_id=$_SESSION['user_id'];
-}
 ?>
+
+
 
 <html>
   <head>
@@ -55,9 +53,88 @@ if(isset($_SESSION['user_id'])){
 		
 	<script>
 	
+	<?php
+	if(isset($_SESSION['user_id'])){
+	
+	$user_id=$_SESSION['user_id'];
+	
+	$marcadoresTitulo=array();
+	$marcadoresID=array();
+	$sql="Select * from marker where UserID='$user_id'";
+	$result=$result=mysqli_query($link, $sql);
+	
+	while($row = mysqli_fetch_array($result)){
+		
+		$marcadoresTitulo[]=$row['titulo'];
+		$marcadoresID[]=$row['MarkerID'];
+		
+	}
+	echo 'var marcadoresTitulo = '.json_encode($marcadoresTitulo).';';
+	echo 'var marcadoresID = '.json_encode($marcadoresID).';';
+	}
+	?>
+	
 var map;
+var selectboxes=0;
 
+function populaSelects(idSelect){
+	
+	alert(idSelect);
+var select = document.getElementById(idSelect);
+	for(var i = 0; i < marcadoresTitulo.length; i++) {
+		var opt = marcadoresTitulo[i];
+		var val = marcadoresID[i];
+		var el = document.createElement("option");
+		el.textContent = opt;
+		el.value = val;
+		select.appendChild(el);
+		
+	};
+};
 
+function criaSelects(){
+	
+	if (selectboxes<marcadoresTitulo.length){
+selectboxes++;
+var myElement = document.getElementById('caixas');
+var txt = document.createTextNode(selectboxes+".");
+myElement.appendChild(txt);
+var selectList = document.createElement("select");
+selectList.id = "marker"+selectboxes;
+selectList.name="marker"+selectboxes;
+selectList.onchange=function(){disableValues(this.id, this.value);};
+myElement.appendChild(selectList);
+var br = document.createElement("br");
+myElement.appendChild(br);
+
+populaSelects(selectList.id);
+
+if (selectboxes==1){
+	
+	criaSelects();
+};
+}else{
+	alert("Já nâo tem mais marcadores disponiveis!");
+};
+};
+
+/**function disableValues(selectID, selectedValue){
+	
+	alert(selectID+" e "+ selectedValue);
+	
+	for(var i = 1;i=selectboxes;i++){
+		var aMudar = "marker"+i;
+		var protegido = selectID;
+		if (protegido==(aMudar)){
+			alert("aqui - "+protegido+" não fiz nada");
+		}else{
+			$(aMudar).("option[value='"+ selectedValue + "']").attr('disabled', true ); 
+			
+		};
+		
+	};
+	
+};**/
 
 function initialize() {
 	
@@ -73,6 +150,18 @@ function initialize() {
 	
 $("#text_search").geocomplete();  // Option 1: Call on element.
 
+
+<?php
+if(isset($_SESSION['user_id'])){
+	echo 'var isLogged =true;';
+}else{
+	echo 'var isLogged =false;';
+}
+?>
+
+if (isLogged){
+criaSelects();
+};
 /**function janelaRotas () {
 	
 	$.fancybox({
@@ -89,13 +178,13 @@ $("#text_search").geocomplete();  // Option 1: Call on element.
 };**/
 
 
-$( "#listagem" )
+/**$( "#listagem" )
     .sortable({ handle: ".handle" })
     .selectable({ filter: "li", cancel: ".handle" })
     .find( "li" )
     .addClass( "ui-corner-all" )
-    .prepend( "<div class='handle'><span class='ui-icon ui-icon-carat-2-n-s'></span></div>" );
-
+    .prepend( "<div class='handle'><span class='ui-icon ui-icon-carat-2-n-s'></span></div>" );**/
+	
 
 	
 	GMaps.geolocate({
@@ -312,25 +401,18 @@ $('#geocoding_form').submit(function(e){
 	</div>
 		<div class="bottombar">
 		
-		<?php
 
-
-
-		
-
-		$sql="Select * from marker where UserID='$user_id'";
-		$result = mysqli_query($link, $sql);
-		?>
 			<div class ="selesort">
-				<ul id="listagem">
-				<?php
-				
-				while($row = mysqli_fetch_array($result)){
-					echo '<li value="'.$row['MarkerID'].'">'.$row['titulo'].'</li>';
-				}
-				?>
-				
-				</ul>
+			<form id="form_rotas" action="placeroute.php" method="post">
+				<div id="caixas">
+				<input type="textbox" value="Titulo da Rota" name="titulo_rota" onFocus="this.value='';"/>
+				</div>
+				<div id="botoes">
+				<br>
+					<input type="button" value="add marker" onClick="criaSelects()"/><br>
+					<input type="submit" value="Criar Rota!"/>
+				</div>
+			</form>
 			</div>
 		
 		</div>
