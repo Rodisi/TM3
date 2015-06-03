@@ -29,7 +29,7 @@ include 'config.php';
 	<script type="text/javascript" src="toggles.js"></script>
 	<script type="text/javascript" src="gmaps.js"></script>
 	
-	<link rel="stylesheet" type="text/css" href="selesort.css">
+	
 
 	
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -399,6 +399,7 @@ $('#geocoding_form').submit(function(e){
 		
 		<?php } ?>
 	</div>
+		
 		<div class="bottombar">
 		
 

@@ -23,7 +23,7 @@ if(!isset($_FILES['imagem'])){
 	
 move_uploaded_file($_FILES["imagem"]["tmp_name"],"images/" . $_FILES["imagem"]["name"]);
 $file="images/".$_FILES["imagem"]["name"];
-/**$image = new Imagick($file); tenho de ver da classe para instalar... **/
+$image = new Imagick($file); 
 	
 }
 

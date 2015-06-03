@@ -19,8 +19,10 @@ function showRoute(RouteID){
 	
 	$.fancybox({
         type: 'iframe',
-        href: 'showroute.php?RouteID='+RouteID,
-    })
+        href: 'testdrive.php?RouteID='+RouteID,
+    });
+	
+	/**location.href = "showroute.php?RouteID="+RouteID;**/
 };
 	
 
@@ -122,7 +124,7 @@ if ($num_rows>0){
 }else{
 	echo '<p>Ainda não tem Rotas!</p>';
 }
-	echo '';
+	
 	
 }
 ?>
