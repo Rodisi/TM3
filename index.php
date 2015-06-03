@@ -79,7 +79,7 @@ var selectboxes=0;
 
 function populaSelects(idSelect){
 	
-	alert(idSelect);
+	
 var select = document.getElementById(idSelect);
 	for(var i = 0; i < marcadoresTitulo.length; i++) {
 		var opt = marcadoresTitulo[i];
@@ -389,12 +389,12 @@ $('#geocoding_form').submit(function(e){
 			
 			
 		?>
+		
+		
+		
 		<div class="other">
-		<img class="clickToggle" src="images/sign.jpg" width="50px" height="50px"/>
+		<img class="clickToggle" src="images/build-sign.png" width="75px" height="75px"/>
 		</div>
-		
-		
-		
 		<div class="menu_icon"><img id="m_icon" src="images/menu-alt.png" alt="Open/Close Navigation Bar"/></div>
 		
 		<?php } ?>
@@ -403,13 +403,15 @@ $('#geocoding_form').submit(function(e){
 		
 
 			<div class ="selesort">
+			<p>Construidor de Rotas</p>
+			
 			<form id="form_rotas" action="placeroute.php" method="post">
 				<div id="caixas">
-				<input type="textbox" value="Titulo da Rota" name="titulo_rota" onFocus="this.value='';"/>
+				<input type="textbox" value="Titulo da Rota" name="titulo_rota" onFocus="this.value='';"/><br><br>
 				</div>
 				<div id="botoes">
 				<br>
-					<input type="button" value="add marker" onClick="criaSelects()"/><br>
+					<input type="button" value="add marker" onClick="criaSelects()"/><br><br>
 					<input type="submit" value="Criar Rota!"/>
 				</div>
 			</form>

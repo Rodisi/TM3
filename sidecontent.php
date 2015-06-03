@@ -97,7 +97,7 @@ if ($num_rows>0){
 		
 		
 		echo '<li>';
-		echo '<img src="images/sign.jpg"/>';
+		echo '<img src="images/sign.png"/>';
 		echo '<h3>'.$row['titulo_rota'].'</h3>';
 		echo '</li>';
 	}
