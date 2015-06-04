@@ -5,38 +5,25 @@ include 'config.php';
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="gmaps.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&sensor=true"></script>
 <script src="geocomplete/jquery.geocomplete.js"></script>
-<script>
+<style>
+      html, body, #route_map {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
 
-var map;
 
-function initialize() {
-	
-	
-function drawIt(){
-map.drawRoute({
-	
-for (var i=0;i<coordenadas.length-1;i++){
-  origin: [coordenadas[0][0], coordenadas[0][1]],
-  destination: [coordenadas[1][0], coordenadas[1][1]],
-  travelMode: 'driving',
-  strokeColor: '#131540',
-  strokeOpacity: 0.6,
-  strokeWeight: 6
-};
-});
-
-};
 
 <?php
 
 $RouteID=$_GET['RouteID'];
-alert($RouteID);
 
-$sql="Select MarkerID from marker_rota where RotaID='$RotaID'";
+
+$sql="Select MarkerID from marker_rota where RotaID='$RouteID'";
 $result=mysqli_query($link,$sql);
 
 $marcadores=array();
@@ -61,24 +48,75 @@ for ($i=0;$i<$tamanho;$i++){
 			
 		}
 		
-		alert($coordenadas);
+	
 	
 }
-
-
-echo 'var coordenadas = '.json_encode($coordenadas).';';
-
 ?>
 
 
+
+<script>
     
-        map = new GMaps({
-	div: '#map-canvas',
-	lat: 71.043333,
-	lng: 77.028333,
-        });
-		
+<?php
+	
+	
+echo 'var coordenadas = '.json_encode($coordenadas).';';
+
+?>
+var ultimoindex = (coordenadas.length)-1;
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var map;
+function initialize() {
+	directionsDisplay = new google.maps.DirectionsRenderer();
+	var mapOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(coordenadas[0][0], coordenadas[0][0])
 	};
+	map = new google.maps.Map(document.getElementById('route_map'),
+      mapOptions);
+	  directionsDisplay.setMap(map);
+        calcRoute();
+}
+
+	function calcRoute() {
+		alert("tou no calcRoute");
+	var start = new google.maps.LatLng(coordenadas[0][0],coordenadas[0][1]); // Route path starting piont (Address).
+	var end = new google.maps.LatLng(coordenadas[ultimoindex][0],coordenadas[ultimoindex][1]); // Route path ending point.
+	var waypts = new Array(); // Array to store waypoints.
+		
+		for (var i =0;i<coordenadas.length;i++){
+			alert("tou no for");
+			
+		waypts.push({
+			location:new google.maps.LatLng(coordenadas[i][0],coordenadas[i][1]),
+			stopover:true
+			
+		});
+		document.write(coordenadas[i][0],coordenadas[i][1]);
+		
+		document.write(waypts);
+		}
+		
+		
+  var request = {
+      origin: start,
+      destination: end,
+      waypoints: waypts,
+      optimizeWaypoints: true,
+      travelMode: google.maps.TravelMode.DRIVING
+  };
+  
+
+directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    }
+
+});
+	}
+google.maps.event.addDomListener(window, 'load', initialize);  
+
 
 </script>
 

@@ -19,7 +19,7 @@ function showRoute(RouteID){
 	
 	$.fancybox({
         type: 'iframe',
-        href: 'testdrive.php?RouteID='+RouteID,
+        href: 'showroute.php?RouteID='+RouteID,
     });
 	
 	/**location.href = "showroute.php?RouteID="+RouteID;**/
