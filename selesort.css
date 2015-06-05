@@ -1,7 +1,0 @@
-.selesort ul { width: 200px; list-style: none; margin: 0; padding: 0; }
-.selesort li { background: white; position:relative;margin: 1em 0; padding: 1em; border: 2px solid gray; list-style: none; padding-left: 42px; color:black;}
-li .handle { background: #f8f8f8; position: absolute; left: 0; top: 0; bottom: 0; padding:8px; }
-.ui-selecting { background: #FFFFFF; }
-.ui-selecting .handle { background: #FFFFFF; }
-.ui-selected { background: #1e1e1e; }
-.ui-selected .handle { background: #1e1e1e; }

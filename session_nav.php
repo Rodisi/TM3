@@ -10,6 +10,8 @@ include 'config.php';
 
 
 if(!isset($_SESSION['user_id'])){
+	
+		
     echo '<form action="login.php" method="post">Login:<input type="textbox" name="username"/>Password:<input type="password" name="password"/><input type="submit" value="Entrar"/></form>';
 	
 }else {
@@ -28,6 +30,18 @@ if(!isset($_SESSION['user_id'])){
 
 	}
 	
+}
+
+if(!isset($_SESSION['user_id'])){
+	
+		if(isset($_GET['err'])){
+			
+			$mensagem =$_GET['err'];
+			if ($mensagem==1){
+				
+				echo '<p style="color:red;">Password ou Username Inválidos.<p><br>';
+			}
+		}
 }
 
 ?>

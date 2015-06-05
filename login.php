@@ -24,15 +24,16 @@ session_start();
 		$_SESSION['user_id'] = $user_id;
 		}
 		
-		
-	}else {
-		
-		echo 'Login Failed. Incorrect Username or Password.';
-	}
-
-	
-	/* close connection */
+		/* close connection */
 	mysqli_close($link);
 	
 	header("Location: index.php");
+		
+	}else {
+		
+		header("Location: index.php?err=1");
+	}
+
+	
+	
 ?>

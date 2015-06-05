@@ -24,7 +24,22 @@ password:<br>
 
 </form>
 </div>
-<div id="footer"><p><a href="index.php"><< Voltar ao Index</a></p></div>
+<div id="footer">
+<?php 
+if (isset($_GET['err'])){
+	
+	$mensagem=$_GET['err'];
+	
+	if ($mensagem==2){
+		
+		echo '<p style="color:red;">E-mail ja registado.</p>';
+	}
+	
+	
+}
+?>
+<a href="index.php"><< Voltar ao Index</a>
+</div>
 
 </div>
 
