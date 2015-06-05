@@ -11,6 +11,7 @@
 	height: 120px;
 	border: 3px solid #cccccc;
 	padding: 5px;
+	display:block;
 	
 	}
 	

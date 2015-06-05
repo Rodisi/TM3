@@ -46,7 +46,7 @@ if(isset($_GET['MarkerID'])){
 echo 'var fonte = '.json_encode($imagem).';';
 ?>
 $( document ).ready(function() {
-	alert(fonte);
+	
 var imgem =document.getElementById('imagem');
 imgem.src = fonte;
 

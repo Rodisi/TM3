@@ -68,8 +68,8 @@ var map;
 function initialize() {
 	directionsDisplay = new google.maps.DirectionsRenderer();
 	var mapOptions = {
-    zoom: 8,
-    center: new google.maps.LatLng(coordenadas[0][0], coordenadas[0][0])
+    zoom: 12,
+    center: new google.maps.LatLng(coordenadas[0][0], coordenadas[0][1])
 	};
 	map = new google.maps.Map(document.getElementById('route_map'),
       mapOptions);
