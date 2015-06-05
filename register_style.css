@@ -1,0 +1,62 @@
+html, body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+		
+		
+      }
+
+.container {
+height:100%;
+margin: 0px;
+background-color:#000000;
+}
+
+.corpo{
+border:20px solid #484848;
+border-radius: 25px;
+background-color:#FFFFFF;
+width:400px;
+height:300px;
+padding:10px;
+margin:auto;
+
+
+}
+
+a:link{
+text-decoration: none;
+color: inherit;
+font-weight:bold;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+#footer{
+margin-bottom:0;
+text-align:right;
+
+}
+
+#formulario{
+margin-right:auto;
+margin-left:auto;
+width:200px;
+
+}
+
+#wrap{
+width:200px;
+margin-left:auto;
+margin-right:auto;
+}

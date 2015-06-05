@@ -22,6 +22,7 @@ html, body {
 	  #header{
 	  height: 100px;
 	  background-color: #000000;
+	  color:#FFFFFF;
 	  
 	
 		
@@ -200,20 +201,29 @@ html, body {
 	  #textoMarcador {
 	  
 	  float:right;
-	  width: 200px;
-	  height: 100px;
+	  width: 220px;
+	  height: 240px;
 	  margin:0;
-	  overflow:auto;
+	  overflow-x:hidden;
+	  overflow-y:auto;
 	  
 	  }
 	  
 	  #polaroid {
 	  
-	  float:left;
+	  
+	  max-height:100%;
+	  width:auto;
+	  margin:0;
+	  
+	  }
+	  
+	  #contentorPolaroid {
 	  width:200px;
 	  height:215px;
 	  margin:0;
-	  
+	  padding:0;
+	  float:left;
 	  }
 	  
 	  * {margin: 0; padding: 0;}
@@ -333,4 +343,24 @@ width:75px;
 	  margin-bottom:0;
 	  padding:0;
 	  position: absolute;
+}
+
+a:link{
+text-decoration: none;
+color: inherit;
+font-weight:bold;
+}
+
+a:active {
+    text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    text-decoration: none;
+	color: inherit;
 }

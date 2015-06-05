@@ -74,7 +74,7 @@ include 'config.php';
 	}
 	?>
 	
-var map;
+
 var selectboxes=0;
 
 function populaSelects(idSelect){
@@ -135,7 +135,7 @@ if (selectboxes==1){
 	};
 	
 };**/
-
+var map;
 function initialize() {
 	
 	/**$( "#text_search" ).autocomplete({
@@ -162,28 +162,7 @@ if(isset($_SESSION['user_id'])){
 if (isLogged){
 criaSelects();
 };
-/**function janelaRotas () {
-	
-	$.fancybox({
-        type: 'iframe',
-		
-		afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
-              parent.location.reload(true);
-			  
-            },
-        href: 'placeroute.php',
-    });
-	
-	
-};**/
 
-
-/**$( "#listagem" )
-    .sortable({ handle: ".handle" })
-    .selectable({ filter: "li", cancel: ".handle" })
-    .find( "li" )
-    .addClass( "ui-corner-all" )
-    .prepend( "<div class='handle'><span class='ui-icon ui-icon-carat-2-n-s'></span></div>" );**/
 	
 
 	
@@ -294,7 +273,18 @@ echo 'var locais = '.json_encode($locais).';';
 ];*/
 
 
-
+function abreimg(idmarcador){
+	
+	
+	
+	
+	$.fancybox({
+        type: 'iframe',
+		
+        href: 'showimg.php?MarkerID='+idmarcador,
+    });
+	
+}
 
 
 				
@@ -303,7 +293,7 @@ function setMarkers(map, locations) {
   // Add markers to the map
   for (var i = 0; i < locations.length; i++) {
     var beach = locations[i];
-	var mytext = '<div id="contentorMarcador"><div id="textoMarcador"><h1>'+beach[0]+'</h1><br><p>'+beach[4]+'</p></div><div id="polaroid"><img src="'+beach[5]+'" width="200" height="215"/></div></div>';
+	var mytext = '<div id="contentorMarcador"><h1>'+beach[0]+'</h1><br><div id="textoMarcador"><p>'+beach[4]+'</p></div><div id="contentorPolaroid"><img id="polaroid" src="'+beach[5]+'" width="200" height="215" onClick="abreimg('+beach[3]+');"/></div></div>';
 	var myinfowindow = new google.maps.InfoWindow({content: mytext});
     map.addMarker({
         lat:beach[1],
@@ -337,12 +327,12 @@ google.maps.event.addDomListener(window, 'load', initialize);
 	<div id="header">
 		<div id=titulo> </div>
 		<div class="social_icons">
-								<img src="images/social-icons.png" border="0" usemap="#social-icons">
-								<map name="social-icons">
-								  <area shape="rect" coords="0,0,32,32" href="http://www.facebook.com" target="_blank" alt="Facebook">
-								  <area shape="rect" coords="48,0,80,32" href="http://www.twitter.com" target="_blank" alt="Twitter">
-								  <area shape="rect" coords="96,0,128,32" href="https://plus.google.com" target="_blank" alt="Google+">
-								</map>
+								<?php
+								if(!isset($_SESSION['user_id'])){
+									
+									echo '<a href="register.php"><h1>Registe-se!</h1></a>';
+								}
+								?>
 		</div>
 		
 		<div class="global_search">
@@ -404,7 +394,7 @@ $('#geocoding_form').submit(function(e){
 		
 
 			<div class ="selesort">
-			<p>Construidor de Rotas</p>
+			<h1>Construidor de Rotas</h1><br>
 			
 			<form id="form_rotas" action="placeroute.php" method="post">
 				<div id="caixas">

@@ -24,6 +24,17 @@ function showRoute(RouteID){
 	
 	/**location.href = "showroute.php?RouteID="+RouteID;**/
 };
+
+function apagaM(id_elemento){
+	
+	location.href ="apagamarcador.php?MarkerID="+id_elemento;
+	
+}
+
+function apagaR(id_elemento){
+	
+	location.href ="apagarota.php?RotaID="+id_elemento;
+}
 	
 
 	
@@ -81,6 +92,8 @@ if ($num_rows>0){
 	echo '<li onClick="centrar('.$row['lat'].','.$row['lon'].')">';
 	echo '<img src="'.$row['imagem'].'"/>';
 	echo '<h3>'.$row['titulo'].'</h3>';
+	/**echo '<a href="apagamarcador.php?MarkerID='.$row['MarkerID'].'">Apagar este marcador</a>';**/
+	echo '<input type="button" value="APAGAR" onClick="apagaM('.$row['MarkerID'].')"/>';
 	
 	echo '</li>';
 	
@@ -115,6 +128,7 @@ if ($num_rows>0){
 		echo '<li onClick="showRoute('.$row['RotaID'].')">';
 		echo '<img src="images/sign.png"/>';
 		echo '<h3>'.$row['titulo_rota'].'</h3>';
+		echo '<input type="button" value="APAGAR" onClick="apagaR('.$row['RotaID'].')"/>';
 		echo '</li>';
 	}
 	
@@ -128,3 +142,4 @@ if ($num_rows>0){
 	
 }
 ?>
+

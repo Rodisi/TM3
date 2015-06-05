@@ -15,7 +15,7 @@ $titulo=$_POST['titulo'];
 
 
 
-if(!isset($_FILES['imagem'])){
+if($_FILES['imagem']['tmp_name']==''){
 	
 	$file = "images/polaroid.png";
 	

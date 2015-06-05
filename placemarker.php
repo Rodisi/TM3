@@ -2,17 +2,27 @@
 <?php session_start(); ?>
 <html>
   <head>
-    <script type="text/javascript" src="jQuery-TE/jquery-te-1.4.0.min.js"></script>
+    
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<style>
 	
-	<link rel="stylesheet" type="text/css" href="jQuery-TE/jquery-te-1.4.0.css">
+	#texto_editavel {
+	width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	
+	}
+	
+	#titulo {
+		
+		width:300px;
+	}
+	
+	</style>
   </head>
   <body>
-<script>
-	$(document).ready(function() {
-	$("#texto_editavel").jqte();
-	});
-	
-</script>
+
 <?php
 
 
@@ -25,11 +35,12 @@ echo '<p>Para colocar Marcadores, por favor faça Log-in.</p>';
 ?>	
   
 <form action="guardarmarcador.php" method="post" enctype="multipart/form-data">
-<input type="file" name="imagem">
+Imagem: <br><input type="file" name="imagem">
 <br>
-<input type="textarea" name="historia" id ="texto_editavel"  onfocus="if(this.value == 'Conte-nos a sua historia!') { this.value = ''; }" value="Conte-nos a sua historia!"></textarea>
-<br>
-<input type="text" name="titulo"/>
+Titulo: <br><input type="text" name="titulo" id="titulo"/>
+<br><br>
+História: <br><input type="textarea" name="historia" id ="texto_editavel"  onfocus="if(this.value == 'Conte-nos a sua historia!') { this.value = ''; }" value="Conte-nos a sua historia!"></textarea>
+
 <br>
 <input type="hidden" name="lat" id="latitude"/>
 <br>

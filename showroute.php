@@ -63,9 +63,7 @@ for ($i=0;$i<$tamanho;$i++){
 echo 'var coordenadas = '.json_encode($coordenadas).';';
 
 ?>
-var ultimoindex = (coordenadas.length)-1;
-var directionsDisplay;
-var directionsService = new google.maps.DirectionsService();
+
 var map;
 function initialize() {
 	directionsDisplay = new google.maps.DirectionsRenderer();
@@ -75,46 +73,28 @@ function initialize() {
 	};
 	map = new google.maps.Map(document.getElementById('route_map'),
       mapOptions);
-	  directionsDisplay.setMap(map);
-        calcRoute();
+	  
+	  var flightPlanCoordinates = [];
+	  
+	  for (i = 0; i < coordenadas.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(coordenadas[i][0], coordenadas[i][1]),
+        map: map
+      });
+      flightPlanCoordinates.push(marker.getPosition());
+	  }
+	  
+	  var flightPath = new google.maps.Polyline({
+      map: map,
+      path: flightPlanCoordinates,
+      strokeColor: "#FF0000",
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
 }
 
-	function calcRoute() {
-		alert("tou no calcRoute");
-	var start = new google.maps.LatLng(coordenadas[0][0],coordenadas[0][1]); // Route path starting piont (Address).
-	var end = new google.maps.LatLng(coordenadas[ultimoindex][0],coordenadas[ultimoindex][1]); // Route path ending point.
-	var waypts = new Array(); // Array to store waypoints.
-		
-		for (var i =0;i<coordenadas.length;i++){
-			alert("tou no for");
-			
-		waypts.push({
-			location:new google.maps.LatLng(coordenadas[i][0],coordenadas[i][1]),
-			stopover:true
-			
-		});
-		document.write(coordenadas[i][0],coordenadas[i][1]);
-		
-		document.write(waypts);
-		}
-		
-		
-  var request = {
-      origin: start,
-      destination: end,
-      waypoints: waypts,
-      optimizeWaypoints: true,
-      travelMode: google.maps.TravelMode.DRIVING
-  };
-  
-
-directionsService.route(request, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-    }
-
-});
-	}
+	
+	
 google.maps.event.addDomListener(window, 'load', initialize);  
 
 
