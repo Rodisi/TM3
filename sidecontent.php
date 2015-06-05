@@ -27,13 +27,17 @@ function showRoute(RouteID){
 
 function apagaM(id_elemento){
 	
-	location.href ="apagamarcador.php?MarkerID="+id_elemento;
+	if (confirm('De certeza que deseja apagar este Marcador?')) {
+		location.href ="apagamarcador.php?MarkerID="+id_elemento;
+	}
+	
 	
 }
 
 function apagaR(id_elemento){
-	
+	if (confirm('De certeza que deseja apagar esta Rota?')) {
 	location.href ="apagarota.php?RotaID="+id_elemento;
+	}
 }
 	
 
