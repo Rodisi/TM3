@@ -286,8 +286,7 @@ overflow-x: hidden;
 
 width:20%;
 height:0px;
-background-color:#000000;
-color:#FFFFFF;
+
 z-index: 1;
 position: fixed;
 bottom:0%;
@@ -301,6 +300,11 @@ overflow-y:auto;
 .selesort{
 padding:20px;
 font-weight:bold;
+border: 5px solid #484848;
+border-top-right-radius:25px;
+border-bottom-right-radius:25px;
+background-color:#FFFFFF;
+color:#000000;
 
 
 }

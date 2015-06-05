@@ -118,6 +118,8 @@ if (selectboxes==1){
 };
 };
 
+
+
 /**function disableValues(selectID, selectedValue){
 	
 	alert(selectID+" e "+ selectedValue);
@@ -330,7 +332,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 								<?php
 								if(!isset($_SESSION['user_id'])){
 									
-									echo '<a href="register.php"><h1>Registe-se!</h1></a>';
+									echo 'Deseja criar os seus próprios marcadores e rotas?  <a href="register.php">Registe-se!</a>';
 								}
 								?>
 		</div>
